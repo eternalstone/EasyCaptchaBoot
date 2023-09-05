@@ -296,6 +296,16 @@ public class CaptchaListener implements EasyCaptchaListener {
         // 判断验证码
         return redisCode != null && redisCode.equals(code);
     }
+    
+    //也可以重载verify方法，自定义传入参数进行验证, 例如：
+    public boolean verify(String uuid, String code) {
+      System.out.println("前端传入的uuid" + uuid);
+      System.out.println("前端输入的验证码" + code);
+      String redisCode = redisUtil.get(uuid);
+      // 判断验证码
+      return redisCode != null && redisCode.equals(code);
+    }
+    
 }
 ```
 
